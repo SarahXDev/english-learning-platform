@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>التحدث - تعلم الإنجليزية</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header class="main-header">
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <h1><i class="fas fa-language"></i> تعلم الإنجليزية</h1>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="index.html"><i class="fas fa-home"></i> الرئيسية</a></li>
+                    <li><a href="levels.html"><i class="fas fa-signal"></i> المستويات</a></li>
+                    <li><a href="quiz.html"><i class="fas fa-question-circle"></i> الاختبارات</a></li>
+                    <li><a href="reading.html"><i class="fas fa-book-open"></i> القراءة</a></li>
+                    <li><a href="writing.html"><i class="fas fa-pen"></i> الكتابة</a></li>
+                    <li><a href="listening.html"><i class="fas fa-headphones"></i> الاستماع</a></li>
+                    <li><a href="speaking.html" class="active"><i class="fas fa-microphone"></i> التحدث</a></li>
+                    <li><a href="progress.html"><i class="fas fa-chart-line"></i> التقدم</a></li>
+                </ul>
+                <button class="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Speaking Page -->
+    <main class="speaking-page">
+        <div class="container">
+            <div class="page-header">
+                <h1><i class="fas fa-microphone"></i> تدريبات التحدث</h1>
+                <p class="page-subtitle">سجل صوتك أثناء التحدث بالإنجليزية وقيم أدائك بنفسك</p>
+                
+                <div class="speaking-stats">
+                    <div class="stat-box">
+                        <div class="stat-icon">
+                            <i class="fas fa-microphone-alt"></i>
+                        </div>
+                        <div class="stat-info">
+                            <span class="stat-number" id="speakingCount">0</span>
+                            <span class="stat-label">تدريب مكتمل</span>
+                        </div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="stat-info">
+                            <span class="stat-number" id="speakingTime">0</span>
+                            <span class="stat-label">دقيقة تسجيل</span>
+                        </div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="stat-info">
+                            <span class="stat-number" id="selfRating">0</span>
+                            <span class="stat-label">التقييم الذاتي</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Microphone Setup -->
+            <div class="microphone-setup">
+                <h2><i class="fas fa-microphone"></i> إعداد الميكروفون</h2>
+                <div class="setup-card">
+                    <div class="setup-content">
+                        <h3>التحقق من الميكروفون</h3>
+                        <p>قبل البدء، تأكد من أن الميكروفون يعمل بشكل صحيح. اضغط على زر "اختبار الميكروفون" وتحدث لترى إذا كان المؤشر يتحرك.</p>
+                        
+                        <div class="microphone-test">
+                            <div class="mic-visualizer">
+                                <div class="mic-level" id="micLevel"></div>
+                            </div>
+                            <div class="mic-controls">
+                                <button class="btn btn-primary" id="testMicBtn">
+                                    <i class="fas fa-microphone"></i> اختبار الميكروفون
+                                </button>
+                                <button class="btn btn-secondary" id="stopTestBtn">
+                                    <i class="fas fa-stop"></i> إيقاف الاختبار
+                                </button>
+                            </div>
+                            <div class="mic-status" id="micStatus">
+                                <!-- Mic status will be shown here -->
+                            </div>
+                        </div>
+                        
+                        <div class="setup-tips">
+                            <h4><i class="fas fa-lightbulb"></i> نصائح للتسجيل الجيد:</h4>
+                            <ul>
+                                <li>تأكد من أن الميكروفون قريب من فمك (15-30 سم)</li>
+                                <li>تحدث بوضوح وبسرعة معتدلة</li>
+                                <li>اختر مكانًا هادئًا بعيدًا عن الضوضاء</li>
+                                <li>اختبر الميكروفون قبل كل تسجيل مهم</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Speaking Topics Selection -->
+            <div class="topics-selection">
+                <h2><i class="fas fa-list"></i> اختر موضوعًا للتحدث</h2>
+                <div class="topics-category">
+                    <button class="category-btn active" data-category="all">جميع المواضيع</button>
+                    <button class="category-btn" data-category="personal">شخصي</button>
+                    <button class="category-btn" data-category="descriptive">وصفي</button>
+                    <button class="category-btn" data-category="opinion">الرأي</button>
+                    <button class="category-btn" data-category="roleplay">تمثيل الأدوار</button>
+                </div>
+                
+                <div class="topics-grid">
+                    <div class="topic-card" data-category="personal" data-level="beginner">
+                        <div class="topic-card-header">
+                            <span class="topic-level beginner">مبتدئ</span>
+                            <span class="topic-category personal">شخصي</span>
+                        </div>
+                        <h3>تقديم نفسك</h3>
+                        <p class="topic-description">تحدث عن نفسك: اسمك، جنسيتك، مهنتك، هواياتك، وعائلتك.</p>
+                        <div class="topic-details">
+                            <p><strong>الوقت المقترح:</strong> 1-2 دقيقة</p>
+                            <p><strong>الكلمات المستهدفة:</strong> 80-100 كلمة</p>
+                        </div>
+                        <button class="btn btn-small select-topic-btn" data-topic="1">اختر هذا الموضوع</button>
+                    </div>
+                    
+                    <div class="topic-card" data-category="descriptive" data-level="beginner">
+                        <div class="topic-card-header">
+                            <span class="topic-level beginner">مبتدئ</span>
+                            <span class="topic-category descriptive">وصفي</span>
+                        </div>
+                        <h3>وصف منزلك</h3>
+                        <p class="topic-description">صف منزلك أو شقتك: عدد الغرف، الأثاث، والأماكن المفضلة لديك.</p>
+                        <div class="topic-details">
+                            <p><strong>الوقت المقترح:</strong> 1-2 دقيقة</p>
+                            <p><strong>الكلمات المستهدفة:</strong> 80-100 كلمة</p>
+                        </div>
+                        <button class="btn btn-small select-topic-btn" data-topic="2">اختر هذا الموضوع</button>
+                    </div>
+                    
+                    <div class="topic-card" data-category="personal" data-level="intermediate">
+                        <div class="topic-card-header">
+                            <span class="topic-level intermediate">متوسط</span>
+                            <span class="topic-category personal">شخصي</span>
+                        </div>
+                        <h3>ذكريات الطفولة</h3>
+                        <p class="topic-description">تحدث عن ذكرياتك من الطفولة: أصدقائك، مدرستك، وأفضل الذكريات.</p>
+                        <div class="topic-details">
+                            <p><strong>الوقت المقترح:</strong> 2-3 دقائق</p>
+                            <p><strong>الكلمات المستهدفة:</strong> 150-200 كلمة</p>
+                        </div>
+                        <button class="btn btn-small select-topic-btn" data-topic="3">اختر هذا الموضوع</button>
+                    </div>
+                    
+                    <div class="topic-card" data-category="opinion" data-level="intermediate">
+                        <div class="topic-card-header">
+                            <span class="topic-level intermediate">متوسط</span>
+                            <span class="topic-category opinion">الرأي</span>
+                        </div>
+                        <h3>التكنولوجيا والحياة</h3>
+                        <p class="topic-description">ما هو تأثير التكنولوجيا على حياتنا؟ هل هو إيجابي أم سلبي؟</p>
+                        <div class="topic-details">
+                            <p><strong>الوقت المقترح:</strong> 2-3 دقائق</p>
+                            <p><strong>الكلمات المستهدفة:</strong> 150-200 كلمة</p>
+                        </div>
+                        <button class="btn btn-small select-topic-btn" data-topic="4">اختر هذا الموضوع</button>
+                    </div>
+                    
+                    <div class="topic-card" data-category="roleplay" data-level="advanced">
+                        <div class="topic-card-header">
+                            <span class="topic-level advanced">متقدم</span>
+                            <span class="topic-category roleplay">تمثيل الأدوار</span>
+                        </div>
+                        <h3>مقابلة عمل</h3>
+                        <p class="topic-description">قم بدور مرشح لوظيفة وأجب على أسئلة مقابلة عمل افتراضية.</p>
+                        <div class="topic-details">
+                            <p><strong>الوقت المقترح:</strong> 3-4 دقائق</p>
+                            <p><strong>الكلمات المستهدفة:</strong> 250-300 كلمة</p>
+                        </div>
+                        <button class="btn btn-small select-topic-btn" data-topic="5">اختر هذا الموضوع</button>
+                    </div>
+                    
+                    <div class="topic-card" data-category="descriptive" data-level="beginner">
+                        <div class="topic-card-header">
+                            <span class="topic-level beginner">مبتدئ</span>
+                            <span class="topic-category descriptive">وصفي</span>
+                        </div>
+                        <h3>روتينك اليومي</h3>
+                        <p class="topic-description">صف روتينك اليومي من لحظة استيقاظك حتى ذهابك للنوم.</p>
+                        <div class="topic-details">
+                            <p><strong>الوقت المقترح:</strong> 1-2 دقيقة</p>
+                            <p><strong>الكلمات المستهدفة:</strong> 80-100 كلمة</p>
+                        </div>
+                        <button class="btn btn-small select-topic-btn" data-topic="6">اختر هذا الموضوع</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Speaking Area -->
+            <div class="speaking-area" id="speakingArea" style="display: none;">
+                <div class="speaking-controls">
+                    <button class="btn btn-secondary" id="backToTopics"><i class="fas fa-arrow-right"></i> العودة إلى قائمة المواضيع</button>
+                    <div class="speaking-tools">
+                        <button class="tool-btn" id="showTipsBtn"><i class="fas fa-lightbulb"></i> نصائح التحدث</button>
+                        <button class="tool-btn" id="showVocabularyBtn"><i class="fas fa-book"></i> مفردات مفيدة</button>
+                    </div>
+                </div>
+                
+                <div class="speaking-prompt">
+                    <div class="prompt-header">
+                        <h2 id="speakingTopicTitle">تقديم نفسك</h2>
+                        <div class="prompt-meta">
+                            <span class="topic-level-display" id="topicLevelDisplay">مبتدئ</span>
+                            <span class="topic-category-display" id="topicCategoryDisplay">شخصي</span>
+                            <span><i class="fas fa-clock"></i> الوقت المقترح: <span id="timeTarget">1-2</span> دقيقة</span>
+                            <span><i class="fas fa-word"></i> الكلمات المستهدفة: <span id="wordTarget">80-100</span> كلمة</span>
+                        </div>
+                    </div>
+                    
+                    <div class="prompt-content">
+                        <h3><i class="fas fa-info-circle"></i> تعليمات التحدث:</h3>
+                        <p id="speakingInstructions">تحدث عن نفسك بالإنجليزية: قدم اسمك، جنسيتك، عمرك، مهنتك، هواياتك، وعائلتك. حاول أن تتحدث لمدة دقيقة إلى دقيقتين.</p>
+                        
+                        <div class="prompt-guide">
+                            <h4>دليل النقاط التي يمكنك تغطيتها:</h4>
+                            <ul id="speakingGuide">
+                                <li>اسمك ومن أين أنت</li>
+                                <li>عمرك ومكان إقامتك</li>
+                                <li>مهنتك أو دراستك</li>
+                                <li>هواياتك واهتماماتك</li>
+                                <li>عائلتك وأفرادها</li>
+                                <li>أي معلومات أخرى تريد مشاركتها</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Recording Controls -->
+                <div class="recording-section">
+                    <h3><i class="fas fa-microphone-alt"></i> تسجيل صوتك</h3>
+                    
+                    <div class="recording-controls">
+                        <button class="btn btn-record" id="startRecordingBtn">
+                            <i class="fas fa-microphone"></i> بدء التسجيل
+                        </button>
+                        <button class="btn btn-stop" id="stopRecordingBtn" disabled>
+                            <i class="fas fa-stop"></i> إيقاف التسجيل
+                        </button>
+                        <button class="btn btn-play" id="playRecordingBtn" disabled>
+                            <i class="fas fa-play"></i> تشغيل التسجيل
+                        </button>
+                        <button class="btn btn-save" id="saveRecordingBtn" disabled>
+                            <i class="fas fa-save"></i> حفظ التسجيل
+                        </button>
+                    </div>
+                    
+                    <div class="recording-visualizer">
+                        <div class="visualizer-bar" id="visualizerBar"></div>
+                        <div class="recording-timer" id="recordingTimer">00:00</div>
+                        <div class="recording-status" id="recordingStatus">جاهز للتسجيل</div>
+                    </div>
+                    
+                    <div class="recording-feedback">
+                        <div class="feedback-item">
+                            <span class="feedback-label">مدة التسجيل:</span>
+                            <span class="feedback-value" id="recordingDuration">0 ثانية</span>
+                        </div>
+                        <div class="feedback-item">
+                            <span class="feedback-label">حالة الصوت:</span>
+                            <span class="feedback-value" id="audioQuality">غير متاح</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Self-Evaluation -->
+                <div class="self-evaluation">
+                    <h3><i class="fas fa-clipboard-check"></i> التقييم الذاتي</h3>
+                    <p>بعد الاستماع لتسجيلك، قيم أداءك في الجوانب التالية:</p>
+                    
+                    <div class="evaluation-checklist">
+                        <div class="evaluation-item">
+                            <label class="evaluation-label">
+                                <input type="checkbox" class="evaluation-checkbox" data-criteria="fluency">
+                                <span class="checkmark"></span>
+                                الطلاقة: تحدثت بسلاسة دون تردد كثيرًا
+                            </label>
+                        </div>
+                        <div class="evaluation-item">
+                            <label class="evaluation-label">
+                                <input type="checkbox" class="evaluation-checkbox" data-criteria="pronunciation">
+                                <span class="checkmark"></span>
+                                النطق: نطقت الكلمات بوضوح ودقة
+                            </label>
+                        </div>
+                        <div class="evaluation-item">
+                            <label class="evaluation-label">
+                                <input type="checkbox" class="evaluation-checkbox" data-criteria="grammar">
+                                <span class="checkmark"></span>
+                                القواعد: استخدمت تراكيب نحوية صحيحة
+                            </label>
+                        </div>
+                        <div class="evaluation-item">
+                            <label class="evaluation-label">
+                                <input type="checkbox" class="evaluation-checkbox" data-criteria="vocabulary">
+                                <span class="checkmark"></span>
+                                المفردات: استخدمت مفردات متنوعة ومناسبة
+                            </label>
+                        </div>
+                        <div class="evaluation-item">
+                            <label class="evaluation-label">
+                                <input type="checkbox" class="evaluation-checkbox" data-criteria="content">
+                                <span class="checkmark"></span>
+                                المحتوى: غطيت النقاط المطلوبة بشكل كامل
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="evaluation-summary">
+                        <div class="summary-score">
+                            <span class="score-label">نتيجة التقييم:</span>
+                            <span class="score-value" id="evaluationScore">0/5</span>
+                        </div>
+                        <button class="btn btn-primary" id="saveEvaluationBtn">حفظ التقييم</button>
+                    </div>
+                </div>
+                
+                <!-- Useful Vocabulary (Hidden by default) -->
+                <div class="useful-vocabulary" id="usefulVocabulary" style="display: none;">
+                    <h3><i class="fas fa-book"></i> مفردات وجمل مفيدة</h3>
+                    <div class="vocabulary-content" id="vocabularyContent">
+                        <!-- Vocabulary will be loaded here by JavaScript -->
+                    </div>
+                </div>
+                
+                <!-- Speaking Tips (Hidden by default) -->
+                <div class="speaking-tips-content" id="speakingTipsContent" style="display: none;">
+                    <h3><i class="fas fa-lightbulb"></i> نصائح لتحسين التحدث</h3>
+                    <div class="tips-content">
+                        <ul>
+                            <li>تحدث ببطء ووضوح، لا تستعجل في الكلام</li>
+                            <li>تنفس بعمق قبل البدء للتخلص من التوتر</li>
+                            <li>استخدم جمل قصيرة وبسيطة في البداية</li>
+                            <li>تدرب على النطق الصحيح للكلمات الصعبة</li>
+                            <li>سجل نفسك واستمع للتسجيل لتحليل أدائك</li>
+                            <li>كرر التمرين عدة مرات لتحسين الطلاقة</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Previous Recordings -->
+                <div class="previous-recordings">
+                    <h3><i class="fas fa-history"></i> تسجيلاتك السابقة لهذا الموضوع</h3>
+                    <div class="recordings-list" id="recordingsList">
+                        <!-- Previous recordings will be loaded here by JavaScript -->
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Speaking Practice Techniques -->
+            <div class="practice-techniques">
+                <h2><i class="fas fa-dumbbell"></i> تقنيات التدرب على التحدث</h2>
+                <div class="techniques-grid">
+                    <div class="technique-card">
+                        <div class="technique-icon">
+                            <i class="fas fa-redo"></i>
+                        </div>
+                        <h3>التكرار</h3>
+                        <p>كرر نفس التمرين عدة مرات لتحسين الطلاقة والدقة</p>
+                    </div>
+                    <div class="technique-card">
+                        <div class="technique-icon">
+                            <i class="fas fa-mirror"></i>
+                        </div>
+                        <h3>التحدث أمام المرآة</h3>
+                        <p>تحدث أمام المرآة لمراقبة لغة جسدك وتعبيرات وجهك</p>
+                    </div>
+                    <div class="technique-card">
+                        <div class="technique-icon">
+                            <i class="fas fa-headphones"></i>
+                        </div>
+                        <h3>الاستماع والتكرار</h3>
+                        <p>استمع لنماذج ناطقة بالإنجليزية وحاول تقليدها</p>
+                    </div>
+                    <div class="technique-card">
+                        <div class="technique-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <h3>التدريب اليومي</h3>
+                        <p>خصص وقتًا يوميًا للتحدث بالإنجليزية ولو لدقائق قليلة</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Speaking History -->
+            <div class="speaking-history">
+                <h2><i class="fas fa-history"></i> سجل تدريبات التحدث</h2>
+                <div class="history-table-container">
+                    <table id="speakingHistoryTable">
+                        <thead>
+                            <tr>
+                                <th>التاريخ</th>
+                                <th>الموضوع</th>
+                                <th>المستوى</th>
+                                <th>المدة</th>
+                                <th>التقييم</th>
+                                <th>الإجراءات</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Will be populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>تعلم الإنجليزية</h3>
+                    <p>منصة تعليمية تركز على الممارسة العملية للغة الإنجليزية للمتحدثين باللغة العربية.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="index.html">الرئيسية</a></li>
+                        <li><a href="levels.html">المستويات</a></li>
+                        <li><a href="progress.html">تتبع التقدم</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>المهارات</h3>
+                    <ul>
+                        <li><a href="quiz.html">الاختبارات</a></li>
+                        <li><a href="reading.html">القراءة</a></li>
+                        <li><a href="writing.html">الكتابة</a></li>
+                        <li><a href="listening.html">الاستماع</a></li>
+                        <li><a href="speaking.html">التحدث</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 تعلم الإنجليزية. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
